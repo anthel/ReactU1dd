@@ -1,0 +1,33 @@
+.addUserBtn {
+  display: block;
+  height: 40px;
+  width: 200px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(19, 177, 19);
+  color: white;
+  margin: 5px;
+}
+.addUserBtn:hover {
+  transition: 0.3s;
+  opacity: 0.6;
+}
+.deleteUserBtn {
+  display: block;
+  height: 40px;
+  width: 200px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(228, 30, 30);
+  color: white;
+  margin: 5px;
+}
+.userList {
+  list-style-type: none;
+  list-style-position: inside;
+  margin: 15px;
+  padding: 0;
+}
+.userNameInput {
+  margin: 5px;
+}
