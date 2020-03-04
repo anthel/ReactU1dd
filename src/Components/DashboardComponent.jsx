@@ -42,8 +42,7 @@ class DashboardComponent extends Component {
 
     return (
         <React.Fragment>
-      <React.Fragment>
-
+     
         <WrapperComponent>
 
           <ul className={styles.userList}>
@@ -57,10 +56,7 @@ class DashboardComponent extends Component {
           </button>
 
         </WrapperComponent>
-      </React.Fragment>
-
-      <React.Fragment>
-
+     
         <WrapperComponent style={{maxHeight: '245px'}}>
           <div>
             <form onSubmit={this.handleSubmit}>
@@ -73,13 +69,11 @@ class DashboardComponent extends Component {
             </form>
           </div>
         </WrapperComponent>
-      </React.Fragment>
+      
       </React.Fragment>
     );
 
-  }
-      
+  }   
 }
-
 
 export default DashboardComponent;
