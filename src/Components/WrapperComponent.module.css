@@ -1,3 +1,5 @@
+
+/* Card stylees */
 .card {
   display: block;
   height: fit-content;
@@ -17,7 +19,6 @@
 .btnWrapper {
   height: 55px;
 }
-
 .showcontentBtn {
   border-radius: 4px;
   height: 30px;

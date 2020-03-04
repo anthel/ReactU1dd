@@ -1,23 +1,9 @@
 import React, { Component } from 'react';
-import styles from './App.css';
+import './App.css';
 import DashboardComponent from './Components/DashboardComponent';
 
-import UserComponent from './Components/UserComponent';
 
-
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: '',
-      users: [],
-    }
-  }
-  handleNewUserInput = (newUser) => {
-    this.setState({value: newUser});
-  }
-
-  render() {
+function App() {
 
   return (
     <div className="container">
@@ -26,7 +12,7 @@ class App extends Component {
 
     </div>
   );
-  }
+  
 }
 
 export default App;
