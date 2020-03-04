@@ -1,7 +1,6 @@
 .card {
   display: block;
-  width: 300px;
-  height: 300px;
+  height: fit-content;
   margin: 100px;
   padding: 20px;
   box-shadow: 3px 4px 8px 0 rgba(0,0,0,0.2);
@@ -16,9 +15,9 @@
   width: 230px; 
 }
 .btnWrapper {
-  position: absolute;
-  top: 300px;
+  height: 55px;
 }
+
 .showcontentBtn {
   border-radius: 4px;
   height: 30px;

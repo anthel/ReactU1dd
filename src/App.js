@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styles from './App.css';
 import DashboardComponent from './Components/DashboardComponent';
-import WrapperComponent from './Components/WrapperComponent';
+
+import UserComponent from './Components/UserComponent';
 
 
 class App extends Component {
@@ -17,20 +18,12 @@ class App extends Component {
   }
 
   render() {
+
   return (
     <div className="container">
-      <WrapperComponent>
-        <DashboardComponent 
-          content="userlist" 
-          users={this.state.users} 
-           />
-      </WrapperComponent>
-      <WrapperComponent>
-        <DashboardComponent 
-          content="editusers" 
-          value={this.state.value} 
-          onNewUserInput={this.handleNewUserInput} />
-      </WrapperComponent>
+
+     <DashboardComponent/>
+
     </div>
   );
   }

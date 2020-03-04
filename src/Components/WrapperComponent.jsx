@@ -13,11 +13,12 @@ class WrapperComponent extends Component {
   render() {
 
     return(
-      
-      <div className={styles.card}>
+
+      <div className={styles.card} style={this.props.style}>
         {this.state.showContent && this.props.children}
+        
+        <hr className={styles.cardDivider}/>
         <div className={styles.btnWrapper}>
-          <hr className={styles.cardDivider}/>
         <button className={styles.showcontentBtn} onClick={() => {
           this.setState({
             showContent: !this.state.showContent,
@@ -30,35 +31,6 @@ class WrapperComponent extends Component {
       
     )
 
-/* 
-    if(this.state.showContent === true) {
-      return(
-        <div className="card">
-          {this.props.children}
-          <button onClick={() => {
-            this.setState({
-              showContent: !this.state.showContent,
-            });
-          }}>
-            Show content
-            </button>
-        </div>
-      )
-    }
-    else {
-      return(
-        <div className="card">
-          <button onClick={() => {
-            this.setState({
-              showContent: !this.state.showContent,
-            });
-          }}>
-            Show content
-            </button>
-        </div>
-      )
-    }
-     */
   }
 }
 

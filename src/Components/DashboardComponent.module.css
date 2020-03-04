@@ -22,6 +22,15 @@
   color: white;
   margin: 5px;
 }
+.toggleColorBtn {
+  border: none;
+  height: 40px;
+  width: 200px;
+  border-radius: 5px;
+  background-color: rgb(103, 44, 212);
+  color: white;
+  margin-left: 15px;
+}
 .userList {
   list-style-type: none;
   list-style-position: inside;
