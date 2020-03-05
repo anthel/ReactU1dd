@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import styles from './WrapperComponent.module.css';
 
+/**
+ * @desc General component for displaying content wrapped in a card. Contains a button for 
+ * toggling between showing and hiding content.
+ */
+
 class WrapperComponent extends Component {
   constructor(props) {
     super(props);

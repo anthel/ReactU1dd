@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+/**
+ * @desc Renders an individual user list element, depending on what user is passed in.
+ */
 function UserComponent(props) {
   
     return <li key={props.user} style={{
