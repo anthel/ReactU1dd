@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 /**
  * @desc Renders an individual user list element, depending on what user is passed in.
