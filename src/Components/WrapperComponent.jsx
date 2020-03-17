@@ -7,6 +7,7 @@ import styles from './WrapperComponent.module.css';
  */
 
 class WrapperComponent extends Component {
+
   constructor(props) {
     super(props);
 
@@ -16,10 +17,16 @@ class WrapperComponent extends Component {
   }
  
   render() {
-
+    
+    
     return(
 
-      <div className={styles.card} style={this.props.style}>
+      <div className={styles.card}>
+        
+        {this.props.user && <img src="http://placekitten.com/g/250/200"/>}
+        {this.props.user && <h4 style={{fontWeight: 'bold'}}>{this.props.user.username}</h4>}
+        {this.props.user && <h6>{this.props.user.name}</h6>}
+        {this.props.user && <p>{this.props.user.email}</p>}
 
         {this.state.showContent && this.props.children}
         
@@ -27,13 +34,14 @@ class WrapperComponent extends Component {
 
         <div className={styles.btnWrapper}>
 
-          <button className={styles.showcontentBtn} onClick={() => {
+          {this.props.showToggleBtn &&<button className={styles.showcontentBtn} onClick={() => {
             this.setState({
               showContent: !this.state.showContent,
             });
           }}>
             Show content
-          </button>
+          </button>}
+
         </div>
       </div>
       

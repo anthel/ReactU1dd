@@ -1,3 +1,42 @@
+
+
 .container {
+  left: 20%;
   display: flex;
+  position: fixed;
+
+}
+
+.nav-sidebar {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 12rem;
+  height: 46rem;
+  margin: 0;
+  background-color: red;
+  z-index: 999;
+}
+.nav-links {
+  display: flex;
+  margin: 15px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.nav-links ul {
+  list-style-type: none;
+}
+.navlink-active {
+  color: white;
+}
+
+.loginBtn {
+  display: block;
+  height: 30px;
+  width: 100px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(19, 177, 19);
+  color: white;
+  margin: 5px;
 }

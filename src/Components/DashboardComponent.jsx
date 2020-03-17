@@ -18,18 +18,48 @@ class DashboardComponent extends Component {
     super(props);
 
     this.state = {
-      users: ['Kalle', 'Pelle'],
+      users: [],
       color: 'green',
-      value: '',
+      
+      Name: '',
+      Username: '',
+      Email: '',
+      
     }
   }
-  
-  /**
-   * @desc Called when user types in the input field, recieves the input and sets it to value state
-   */
  
-  handleChange = (event) => {
-    this.setState({value: event.target.value});
+  componentDidMount() {
+    fetch('https://api.softhouse.rocks/users')
+      .then((response) => response.json()
+      .then((json) => json.map(user => {
+        this.setState({users: [...this.state.users, user]})
+      })
+      ));
+  }
+ 
+  /* handleChangeName = (event) => {
+    console.log(this.state.name)
+    this.setState({
+      name: event.target.value,
+    });
+  }
+  handleChangeUsername = (event) => {
+    this.setState({
+      username: event.target.value,
+    });
+  }
+  handleChangeEmail = (event) => {
+    this.setState({
+      email: event.target.value,
+    });
+  } */
+  handleInputChange = (event) => {
+  
+    const name = event.target.name;
+    
+    this.setState({
+      [name]: event.target.value,
+    });
   }
 
   /**
@@ -38,8 +68,9 @@ class DashboardComponent extends Component {
    */
   handleSubmit = (event) => {
     this.setState({
-      users: [...this.state.users, this.state.value], 
-      value: ''});
+      users: [...this.state.users, this.state.Name], 
+      name: ''} );
+      
     event.preventDefault();
 
   }
@@ -54,15 +85,13 @@ class DashboardComponent extends Component {
     this.setState({color: 'red'})
   }
  
-  removeListUser = () => {
-    this.setState({users: this.state.users.slice(0, -1)});
-  }
+ 
   render() {
 
     return (
-        <React.Fragment>
-     
-        <WrapperComponent>
+      <React.Fragment>
+
+        <WrapperComponent showToggleBtn={true}>
 
           <ul className={styles.userList}>
             
@@ -76,15 +105,20 @@ class DashboardComponent extends Component {
 
         </WrapperComponent>
      
-        <WrapperComponent style={{maxHeight: '245px'}}>
-          <div>
+        <WrapperComponent showToggleBtn={true}>
+          <div> 
             <form onSubmit={this.handleSubmit}>
-              <input className={styles.userNameInput} placeholder="New user.." type="text"
-              value={this.state.value} onChange={this.handleChange}/>
+              <input className={styles.inputField} placeholder="Name" type="text"
+              value={this.state.name} onChange={this.handleChangeName}/>
+
+              <input className={styles.inputField} placeholder="Username" type="text"
+              value={this.state.username} onChange={this.handleChangeUsername}/>
+
+              <input className={styles.inputField} placeholder="Email" type="email"
+              value={this.state.email} onChange={this.handleChangeEmail}/>
 
               <button className={styles.addUserBtn} type="submit" >Add</button>
-              <button className={styles.deleteUserBtn} type="button" onClick={this.removeListUser}
-              >Remove</button>
+              
             </form>
           </div>
         </WrapperComponent>

@@ -1,0 +1,12 @@
+.userName {
+  font-weight: bolder;
+  font-size: 20px;
+}
+.fullName {
+  opacity: 0.9;
+  font-weight: 500;
+  color: grey;
+}
+.userEmail {
+  font-style: italic;
+}

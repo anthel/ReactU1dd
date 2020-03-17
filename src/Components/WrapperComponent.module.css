@@ -3,7 +3,8 @@
 .card {
   display: block;
   height: fit-content;
-  margin: 100px;
+  margin: 50px;
+  width: 300px;
   padding: 20px;
   box-shadow: 3px 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
