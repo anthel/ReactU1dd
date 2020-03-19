@@ -34,19 +34,20 @@ class DashboardComponent extends Component {
   
   componentWillMount() {
   
-    this.props.getUsers().then(
-      this.props.users.map(user => {
-        this.setState({users: [...this.state.users, user]});
-      })
-    )
-    
-    
+ 
     }
     
     componentDidMount() {
       
+      this.props.getUsers('users').then(users => {
+        users.map(user => {
+          this.setState({users: [...this.state.users, user]});
+        })
+      }
+        
+      )
       
-      console.log(this.state.users);
+      
     }
   
 

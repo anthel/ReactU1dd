@@ -7,12 +7,12 @@ function UserScreen (props){
   
   const [user, setUser] = useState({});  
 
-  const url = 'https://api.softhouse.rocks/users/' + props.match.params.id;
+  const url = 'users/' + props.match.params.id;
 
   useEffect(() => {
     
     if(!user.address) {
-      props.customEvent(url);
+      props.getUsers(url);
       setUser(props.users);
     }
     

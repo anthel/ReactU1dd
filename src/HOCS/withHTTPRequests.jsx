@@ -11,9 +11,9 @@ export default function withHTTPRequests(WrappedComponent) {
     
     }
     
-    getUsers = () => {
+    getUsers = (url) => {
       
-      return fetch(BASE_URL + "users")
+      return fetch(this.BASE_URL + url)
       .then(response => response.json()
       
       );
@@ -25,7 +25,7 @@ export default function withHTTPRequests(WrappedComponent) {
       
       return (
         <WrappedComponent 
-          customEvent={this.customEvent}
+          getUsers={this.getUsers}
           
           {...this.props}
           />
