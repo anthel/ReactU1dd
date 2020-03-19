@@ -34,7 +34,7 @@ class DashboardComponent extends Component {
   
   componentWillMount() {
   
-    this.props.customEvent('https://api.softhouse.rocks/users').then(
+    this.props.getUsers().then(
       this.props.users.map(user => {
         this.setState({users: [...this.state.users, user]});
       })

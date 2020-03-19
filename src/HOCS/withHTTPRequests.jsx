@@ -3,24 +3,19 @@ import React, { Component } from 'react';
 export default function withHTTPRequests(WrappedComponent) {
 
   return class extends Component {
+
+    BASE_URL = "https://api.softhouse.rocks/";
     constructor(props) {
       super(props);
 
-      this.state = {
-        users: []
-      }
+    
     }
-
-    customEvent = (url) => {
+    
+    getUsers = () => {
       
-      fetch(url)
+      return fetch(BASE_URL + "users")
       .then(response => response.json()
-      .then(response => {
-        this.setState({users: response})
-        console.log(response)
-        console.log(this.state.users)
-        
-      })
+      
       );
       
     }
@@ -31,7 +26,7 @@ export default function withHTTPRequests(WrappedComponent) {
       return (
         <WrappedComponent 
           customEvent={this.customEvent}
-          users={this.state.users}
+          
           {...this.props}
           />
       )
