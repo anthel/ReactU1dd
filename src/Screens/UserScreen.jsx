@@ -1,28 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import WrapperComponent from '../Components/WrapperComponent';
-import styles from './Screens.module.css';
+import withHTTPRequests from '../HOCS/withHTTPRequests';
 
 function UserScreen (props){
 
   
   const [user, setUser] = useState({});  
-  const [userImg, setUserImg] = useState({});
+
+  const url = 'https://api.softhouse.rocks/users/' + props.match.params.id;
 
   useEffect(() => {
-    fetch('https://api.softhouse.rocks/users/'+ props.match.params.id)
-      .then((response) => response.json()
-      .then((response) => 
-        setUser(response)
-      ));
-  }, []);
+    
+    if(!user.address) {
+      props.customEvent(url);
+      setUser(props.users);
+    }
+    
+  }, [user.address, props, url]);
 
-     
+  
+    
+  
   
 
     if(user.address) {
-      const { city, street, zipcode } = user.address; // Destructure keys from address object in user
+
+      const { 
+        address: 
+        {city, street, zipcode }
+      } = user; // Destructure keys from address object in user
+        
       return (
-        <WrapperComponent showToggleBtn={true} user={user} img={userImg}>
+        <WrapperComponent showToggleBtn={true} user={user}>
           <p>{city}</p>
           <p>{street}</p>
           <p>{zipcode}</p>
@@ -42,4 +51,4 @@ function UserScreen (props){
 }
 
 
-export default UserScreen;
+export default withHTTPRequests(UserScreen);

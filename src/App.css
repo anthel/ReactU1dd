@@ -3,16 +3,16 @@
 .container {
   left: 20%;
   display: flex;
-  position: fixed;
+ position: absolute;
 
 }
 
 .nav-sidebar {
   display: flex;
   align-items: center;
-  position: fixed;
+  position: absolute;
   width: 12rem;
-  height: 46rem;
+  height: 100%;
   margin: 0;
   background-color: red;
   z-index: 999;

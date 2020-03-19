@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import DashboardComponent from './Components/DashboardComponent';
 import NavbarComponent from './Components/NavbarComponent';
 import LoginScreen from './Screens/LoginScreen';
 import DashboardScreen from './Screens/DashboardScreen';
@@ -9,7 +8,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 
 /**

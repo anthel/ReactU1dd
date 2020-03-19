@@ -23,7 +23,7 @@ class WrapperComponent extends Component {
 
       <div className={styles.card}>
         
-        {this.props.user && <img src="http://placekitten.com/g/250/200"/>}
+        {this.props.user && <img src="http://placekitten.com/g/250/200" alt="Profile pic"/>}
         {this.props.user && <h4 style={{fontWeight: 'bold'}}>{this.props.user.username}</h4>}
         {this.props.user && <h6>{this.props.user.name}</h6>}
         {this.props.user && <p>{this.props.user.email}</p>}

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+
 import UserComponent from './UserComponent';
 import WrapperComponent from './WrapperComponent';
+import withHTTPRequests from '../HOCS/withHTTPRequests';
+
 import styles from './DashboardComponent.module.css';
 
 /**
@@ -26,39 +29,31 @@ class DashboardComponent extends Component {
       Email: '',
       
     }
-  }
- 
-  componentDidMount() {
-    fetch('https://api.softhouse.rocks/users')
-      .then((response) => response.json()
-      .then((json) => json.map(user => {
-        this.setState({users: [...this.state.users, user]})
-      })
-      ));
-  }
- 
-  /* handleChangeName = (event) => {
-    console.log(this.state.name)
-    this.setState({
-      name: event.target.value,
-    });
-  }
-  handleChangeUsername = (event) => {
-    this.setState({
-      username: event.target.value,
-    });
-  }
-  handleChangeEmail = (event) => {
-    this.setState({
-      email: event.target.value,
-    });
-  } */
-  handleInputChange = (event) => {
-  
-    const name = event.target.name;
     
+  }
+  
+  componentWillMount() {
+  
+    this.props.customEvent('https://api.softhouse.rocks/users').then(
+      this.props.users.map(user => {
+        this.setState({users: [...this.state.users, user]});
+      })
+    )
+    
+    
+    }
+    
+    componentDidMount() {
+      
+      
+      console.log(this.state.users);
+    }
+  
+
+  handleInputChange = (event) => {
+
     this.setState({
-      [name]: event.target.value,
+      [event.target.name]: event.target.value,
     });
   }
 
@@ -72,13 +67,9 @@ class DashboardComponent extends Component {
       name: ''} );
       
     event.preventDefault();
-
+    
   }
 
-  /**
-   * @desc Fires when user clicks on toggleColor button, sets color state to either green or red
-   * depending on the current color.
-   */
   toggleColor = () => {
     this.state.color === 'red' ? 
     this.setState({color: 'green'}) :
@@ -129,4 +120,4 @@ class DashboardComponent extends Component {
   }   
 }
 
-export default DashboardComponent;
+export default withHTTPRequests(DashboardComponent);
