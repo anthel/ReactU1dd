@@ -3,9 +3,6 @@ import DashboardComponent from '../Components/DashboardComponent';
 
 
 class DashboardScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (

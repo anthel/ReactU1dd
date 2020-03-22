@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-function NavbarComponent(props) {
+function NavbarComponent() {
 
   return(
     <div className="nav-links">

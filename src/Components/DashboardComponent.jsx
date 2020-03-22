@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import UserComponent from './UserComponent';
 import WrapperComponent from './WrapperComponent';
@@ -7,16 +8,19 @@ import withHTTPRequests from '../HOCS/withHTTPRequests';
 import styles from './DashboardComponent.module.css';
 
 /**
- *  @desc Handles user input and renders ápp components
- *  @render Renders two wrapper components, which of one contains a list of users and a button
- *  for toggling textcolor on the list. The first wrapper also renders a UserComponent which 
- *  contains elements for the individual user.
- *  The other wrapper contains an input field with two buttons
- *  where the user can add and delete users in the list.
+ *  @desc Handles API userlist.
+ *  Gets current users, and handles user input for posting new users to API.
+ * 
  */ 
 
 
 class DashboardComponent extends Component {
+
+  static propTypes = {
+      getUsers: PropTypes.func.isRequired,
+      postNewUser: PropTypes.func.isRequired,
+  }
+
   constructor(props) {
     super(props);
 
@@ -24,35 +28,29 @@ class DashboardComponent extends Component {
       users: [],
       color: 'green',
       
-      Name: '',
-      Username: '',
-      Email: '',
-      
+      name: '',
+      username: '',
+      email: '',
+
     }
     
   }
-  
-  componentWillMount() {
-  
- 
-    }
     
-    componentDidMount() {
-      
-      this.props.getUsers('users').then(users => {
-        users.map(user => {
-          this.setState({users: [...this.state.users, user]});
-        })
-      }
-        
-      )
-      
-      
-    }
+  componentDidMount() {
+   this.updateUserList();
+  }
+  /**
+   * @desc 
+   */
+  updateUserList() {
+    this.props.getUsers('users').then(users => {
+      this.setState({users: [...users]});
+    })
+  }
   
 
   handleInputChange = (event) => {
-
+    
     this.setState({
       [event.target.name]: event.target.value,
     });
@@ -63,12 +61,20 @@ class DashboardComponent extends Component {
    * the current value of the input field (value state). Then clears the input field.
    */
   handleSubmit = (event) => {
-    this.setState({
-      users: [...this.state.users, this.state.Name], 
-      name: ''} );
-      
-    event.preventDefault();
+    this.props.postNewUser(this.state.name,this.state.username,this.state.email)
+      .then(response => {
+        if(response.status === 201) {
+          this.updateUserList();
+        }
+        this.setState({
+          name: '',
+          username: '',
+          email: ''
+        })
+      })
+
     
+    event.preventDefault();
   }
 
   toggleColor = () => {
@@ -83,7 +89,7 @@ class DashboardComponent extends Component {
     return (
       <React.Fragment>
 
-        <WrapperComponent showToggleBtn={true}>
+        <WrapperComponent >
 
           <ul className={styles.userList}>
             
@@ -100,14 +106,14 @@ class DashboardComponent extends Component {
         <WrapperComponent showToggleBtn={true}>
           <div> 
             <form onSubmit={this.handleSubmit}>
-              <input className={styles.inputField} placeholder="Name" type="text"
-              value={this.state.name} onChange={this.handleChangeName}/>
+              <input className={styles.inputField} placeholder="Name" type="text" name="name"
+              value={this.state.name} onChange={this.handleInputChange}/>
 
-              <input className={styles.inputField} placeholder="Username" type="text"
-              value={this.state.username} onChange={this.handleChangeUsername}/>
+              <input className={styles.inputField} placeholder="Username" type="text" name="username"
+              value={this.state.username} onChange={this.handleInputChange}/>
 
-              <input className={styles.inputField} placeholder="Email" type="email"
-              value={this.state.email} onChange={this.handleChangeEmail}/>
+              <input className={styles.inputField} placeholder="Email" type="email" name="email"
+              value={this.state.email} onChange={this.handleInputChange}/>
 
               <button className={styles.addUserBtn} type="submit" >Add</button>
               

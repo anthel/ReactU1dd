@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+
 import WrapperComponent from '../Components/WrapperComponent';
 import withHTTPRequests from '../HOCS/withHTTPRequests';
 
@@ -12,23 +14,18 @@ function UserScreen (props){
   useEffect(() => {
     
     if(!user.address) {
-      props.getUsers(url);
-      setUser(props.users);
+      props.getUsers(url).then(users => setUser(users));
     }
     
   }, [user.address, props, url]);
 
-  
-    
-  
-  
 
     if(user.address) {
 
       const { 
         address: 
         {city, street, zipcode }
-      } = user; // Destructure keys from address object in user
+      } = user;  // Destructure keys from address object in user
         
       return (
         <WrapperComponent showToggleBtn={true} user={user}>
@@ -45,10 +42,17 @@ function UserScreen (props){
           <p> No user selected </p>
         </WrapperComponent>
 
-    )
-    }
-    
+    )}
 }
+
+UserScreen.propTypes = {
+  getUsers: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string
+    })
+  })
+};
 
 
 export default withHTTPRequests(UserScreen);

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import styles from './WrapperComponent.module.css';
 
 /**
@@ -7,6 +9,15 @@ import styles from './WrapperComponent.module.css';
  */
 
 class WrapperComponent extends Component {
+
+  static propTypes = {
+    user: PropTypes.shape({
+      username: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired
+    }),
+    showToggleBtn: PropTypes.bool
+  }
 
   constructor(props) {
     super(props);

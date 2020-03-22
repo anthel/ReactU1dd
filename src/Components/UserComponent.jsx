@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 
 
@@ -19,15 +17,14 @@ function UserComponent(props) {
           {props.user.name}
         </Link>
     </li>
-  )
-}
+  )}
 
 UserComponent.propTypes = {
   user: PropTypes.shape({
-    name: PropTypes.string,
-    id: PropTypes.number,
+    name: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
   }),
-  color: PropTypes.string,
+  color: PropTypes.string.isRequired,
 };
 
 export default UserComponent;

@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import WrapperComponent from '../Components/WrapperComponent';
 
 
 class LoginScreen extends Component {
+
+  static propTypes = {
+    history: PropTypes.object.isRequired
+  }
   constructor(props) {
     super(props);
 
