@@ -8,12 +8,9 @@ import withHTTPRequests from '../HOCS/withHTTPRequests';
 import styles from './DashboardComponent.module.css';
 
 /**
- *  @desc Handles API userlist.
- *  Gets current users, and handles user input for posting new users to API.
+ *  @desc Responsible for rendering the userlist, and the form for adding new users.
  * 
  */ 
-
-
 class DashboardComponent extends Component {
 
   static propTypes = {
@@ -40,7 +37,7 @@ class DashboardComponent extends Component {
    this.updateUserList();
   }
   /**
-   * @desc 
+   * @desc Calls HOC-method "getUsers", which returns a promise, and saves the returned data to component state.
    */
   updateUserList() {
     this.props.getUsers('users').then(users => {
@@ -48,7 +45,10 @@ class DashboardComponent extends Component {
     })
   }
   
-
+/**
+ * @desc Checks which input field has been changed, and updates its value. 
+ * Using computed property name syntax.
+ */
   handleInputChange = (event) => {
     
     this.setState({
@@ -57,11 +57,13 @@ class DashboardComponent extends Component {
   }
 
   /**
-   * @desc Called when user clicks submit, sets a new userlist state containing the old list plus
-   * the current value of the input field (value state). Then clears the input field.
+   * @desc Calls HOC-method postNewUser with the current form's input-values and updates the userlist if post was successful.
+   *  Also clears form's input-fields.
    */
   handleSubmit = (event) => {
+
     this.props.postNewUser(this.state.name,this.state.username,this.state.email)
+
       .then(response => {
         if(response.status === 201) {
           this.updateUserList();
@@ -72,8 +74,6 @@ class DashboardComponent extends Component {
           email: ''
         })
       })
-
-    
     event.preventDefault();
   }
 

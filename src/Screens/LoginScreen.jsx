@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 import WrapperComponent from '../Components/WrapperComponent';
 
+/**
+ * @desc Coomponent resposible for displaying the login screen. Contains input form for user data.
+ */
 
 class LoginScreen extends Component {
 
@@ -16,15 +19,20 @@ class LoginScreen extends Component {
       value: '',
     }
   }
+
   handleSubmit = (e) => {
     if(this.state.value.length > 10) {
       this.props.history.push("/dashboard");
     }
     e.preventDefault();
   }
+
   handleChange = (e) => {
-    this.setState({value: e.target.value})
+    this.setState({
+      value: e.target.value
+    })
   }
+  
   render() {
     return (
       <WrapperComponent showToggleBtn={true}>

@@ -1,6 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+/**
+ * @desc Renders the navigation bar with NavLinks to the different screens of the application.
+ */
+
 function NavbarComponent() {
 
   return(
